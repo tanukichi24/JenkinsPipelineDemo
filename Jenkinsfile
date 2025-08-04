@@ -27,8 +27,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing'
-            }
-            script {
+                script {
                     def url = 'https://test-env-jenkins-kawada.s3.us-east-1.amazonaws.com/index.html'
                     def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' '$url'", returnStdout: true)
 
@@ -39,6 +38,7 @@ pipeline {
                         error 'Test NG'
                     }
                 }
+            }
         }
         stage('Release') {
             steps {
